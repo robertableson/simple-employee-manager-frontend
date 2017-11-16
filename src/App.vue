@@ -2,13 +2,13 @@
   <v-app>
 
     <v-navigation-drawer dark
-      fixed
-      :mini-variant="miniVariant"
-      v-model="drawer"
+      :fixed="navDrawer.fixed"
+      :mini-variant="navDrawer.miniVariant"
+      v-model="navDrawer.drawer"
       app
     >
       <v-list>
-        <v-list-tile avatar v-for="item in items" v-bind:key="item.title" @click="">
+        <v-list-tile avatar v-for="item in navDrawer.items" v-bind:key="item.title" @click="">
           <v-list-tile-action>
             <v-icon v-if="item.icon" v-html="item.icon"></v-icon>
           </v-list-tile-action>
@@ -21,11 +21,11 @@
 
     <v-toolbar app>
 
-      <v-btn icon @click.stop="drawer = !drawer">
-        <v-icon v-html="drawer ? 'chevron_left' : 'menu'"></v-icon>
+      <v-btn icon @click.stop="navDrawer.drawer = !navDrawer.drawer">
+        <v-icon v-html="navDrawer.drawer ? 'chevron_left' : 'menu'"></v-icon>
       </v-btn>
 
-      <v-toolbar-title v-text="title"></v-toolbar-title>
+      <v-toolbar-title v-text="header.title"></v-toolbar-title>
 
     </v-toolbar>
 
@@ -47,7 +47,7 @@
       </v-container>
     </v-content>
 
-    <v-footer :fixed="fixed" app>
+    <v-footer app>
       <span>&copy; 2017</span>
     </v-footer>
   </v-app>
@@ -57,16 +57,18 @@
   export default {
     data () {
       return {
-        clipped: false,
-        drawer: false,
-        fixed: false,
-        items: [
-          {icon: 'dashboard', title: 'Tableau de bord'},
-          {icon: 'people', title: 'Employés'}
-        ],
-        miniVariant: false,
-        right: true,
-        title: 'Vous inc.'
+        navDrawer: {
+          fixed: true,
+          drawer: true,
+          items: [
+            {icon: 'dashboard', title: 'Tableau de bord'},
+            {icon: 'people', title: 'Employés'}
+          ],
+          miniVariant: false
+        },
+        header: {
+          title: 'Vous inc.'
+        }
       }
     }
   }
