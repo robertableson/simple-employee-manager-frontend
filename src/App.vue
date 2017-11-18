@@ -1,6 +1,5 @@
 <template>
   <v-app>
-
     <v-navigation-drawer dark
       :mobile-break-point="navDrawer.breakpoint"
       :fixed="navDrawer.fixed"

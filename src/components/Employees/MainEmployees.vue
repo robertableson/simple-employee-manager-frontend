@@ -10,8 +10,8 @@
      >
        <v-icon>add</v-icon>
      </v-btn>
-  <v-card>
 
+  <v-card>
     <v-card-title>
       Employés
       <v-spacer></v-spacer>
@@ -59,7 +59,7 @@
             lazy
           >
             <div>{{ props.item.firstName }}</div>
-            <div slot="input" class="mt-3 title">Modifier le nom</div>
+            <div slot="input" class="mt-3 title">Modifier le prénom</div>
             <v-text-field
               slot="input"
               label="Edit"
