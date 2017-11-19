@@ -7,6 +7,7 @@
        bottom
        right
        color="primary"
+       @click="addEmployee"
      >
        <v-icon>add</v-icon>
      </v-btn>
@@ -19,6 +20,9 @@ export default {
     return {}
   },
   methods: {
+    addEmployee: function () {
+      console.log('allo')
+    }
   }
 }
 </script>
