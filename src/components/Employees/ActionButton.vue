@@ -21,7 +21,7 @@ export default {
   },
   methods: {
     addEmployee: function () {
-      console.log('allo')
+      this.$emit('addEmployee')
     }
   }
 }
