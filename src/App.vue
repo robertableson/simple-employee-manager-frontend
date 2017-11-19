@@ -55,7 +55,7 @@
       return {
         navDrawer: {
           fixed: true,
-          drawer: true,
+          drawer: false,
           breakpoint: 960,
           items: [
             {icon: 'dashboard', title: 'Tableau de bord', link: '/'},

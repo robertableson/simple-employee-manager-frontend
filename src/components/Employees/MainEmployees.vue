@@ -1,8 +1,8 @@
 <template>
   <div>
-    <action-button v-on:addEmployee="addEmployee"></action-button>
+    <action-button v-on:openAddEmployeeDialog="openAddEmployeeDialog"></action-button>
     <card-contents></card-contents>
-    <dialog-add-employee v-bind:dialogOpen="dialogOpen"></dialog-add-employee>
+    <dialog-add-employee v-bind:employeeDialogOpen="employeeDialogOpen" v-on:closeAddEmployeeDialog="closeAddEmployeeDialog"></dialog-add-employee>
   </div>
 </template>
 
@@ -14,7 +14,7 @@
   export default {
     data () {
       return {
-        dialogOpen: false
+        employeeDialogOpen: false
       }
     },
     components: {
@@ -23,8 +23,11 @@
       'dialog-add-employee': DialogAddEmployee
     },
     methods: {
-      addEmployee: function () {
-        this.dialogOpen = true
+      openAddEmployeeDialog: function () {
+        this.employeeDialogOpen = true
+      },
+      closeAddEmployeeDialog: function () {
+        this.employeeDialogOpen = false
       }
     }
   }

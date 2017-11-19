@@ -7,7 +7,7 @@
        bottom
        right
        color="primary"
-       @click="addEmployee"
+       @click="openAddEmployeeDialog"
      >
        <v-icon>add</v-icon>
      </v-btn>
@@ -20,8 +20,8 @@ export default {
     return {}
   },
   methods: {
-    addEmployee: function () {
-      this.$emit('addEmployee')
+    openAddEmployeeDialog: function () {
+      this.$emit('openAddEmployeeDialog')
     }
   }
 }

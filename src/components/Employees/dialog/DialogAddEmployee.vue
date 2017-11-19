@@ -1,5 +1,5 @@
 <template>
-  <v-dialog v-model="test" max-width="500px">
+  <v-dialog persistent v-model="employeeDialogOpen" max-width="500px">
     <v-card>
       <v-card-title>
         Dialog 2
@@ -12,7 +12,7 @@
         ></v-select>
       </v-card-text>
     <v-card-actions>
-      <v-btn color="primary" flat @click.stop="test=false">Close</v-btn>
+      <v-btn color="primary" flat @click="closeAddEmployeeDialog">Fermer</v-btn>
       </v-card-actions>
     </v-card>
   </v-dialog>
@@ -21,11 +21,10 @@
 <script>
 export default {
   props: [
-    'dialogOpen'
+    'employeeDialogOpen'
   ],
   data () {
     return {
-      test: this.dialogOpen,
       notifications: false,
       sound: true,
       widgets: false,
@@ -55,7 +54,9 @@ export default {
     }
   },
   methods: {
-
+    closeAddEmployeeDialog: function () {
+      this.$emit('closeAddEmployeeDialog')
+    }
   }
 }
 </script>
