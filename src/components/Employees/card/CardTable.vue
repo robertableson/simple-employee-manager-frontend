@@ -1,5 +1,5 @@
 <template>
-  <v-data-table
+  <!--<v-data-table
     v-bind:headers="headers"
     v-bind:items="items"
     v-bind:search="search"
@@ -7,7 +7,36 @@
     item-key="id"
     select-all
     class="elevation-1"
-  >
+  >-->
+  <v-data-table
+      v-model="selected"
+      v-bind:headers="headers"
+      v-bind:items="items"
+      select-all
+      v-bind:pagination.sync="pagination"
+      item-key="id"
+      class="elevation-1"
+    >
+    <template slot="headers" slot-scope="props">
+      <tr>
+        <th>
+          <v-checkbox
+            primary
+            hide-details
+            @click="toggleAll"
+            :input-value="props.all"
+            :indeterminate="props.indeterminate"
+          ></v-checkbox>
+        </th>
+        <th v-for="header in props.headers" :key="header.text"
+          :class="['column sortable', pagination.descending ? 'desc' : 'asc', header.value === pagination.sortBy ? 'active' : '']"
+          @click="changeSort(header.value)"
+        >
+          <v-icon>arrow_upward</v-icon>
+          {{ header.text }}
+        </th>
+      </tr>
+    </template>
     <template slot="headerCell" slot-scope="props">
       <v-tooltip bottom>
         <span slot="activator">
@@ -140,6 +169,9 @@ export default {
   ],
   data () {
     return {
+      pagination: {
+        sortBy: 'name'
+      },
       selected: [],
       max25chars: (v) => v.length <= 25 || 'Input too long!',
       tmp: '',
@@ -154,7 +186,7 @@ export default {
         {
           value: false,
           id: 1,
-          firstName: 'Raq',
+          firstName: 'bill1',
           lastName: 'Zik',
           birthDate: '1111-11-11',
           hireDate: '1111-11-11',
@@ -163,7 +195,7 @@ export default {
         {
           value: false,
           id: 2,
-          firstName: 'Billy',
+          firstName: 'bill2',
           lastName: 'Bong',
           birthDate: '1111-11-11',
           hireDate: '1111-11-11',
@@ -172,7 +204,7 @@ export default {
         {
           value: false,
           id: 3,
-          firstName: 'Raq',
+          firstName: 'bill3',
           lastName: 'Zik',
           birthDate: '1111-11-11',
           hireDate: '1111-11-11',
@@ -181,7 +213,7 @@ export default {
         {
           value: false,
           id: 4,
-          firstName: 'Raq',
+          firstName: 'bill4',
           lastName: 'Zik',
           birthDate: '1111-11-11',
           hireDate: '1111-11-11',
@@ -190,7 +222,7 @@ export default {
         {
           value: false,
           id: 5,
-          firstName: 'Raq',
+          firstName: 'bill5',
           lastName: 'Zik',
           birthDate: '1111-11-11',
           hireDate: '1111-11-11',
@@ -200,16 +232,38 @@ export default {
     }
   },
   methods: {
-    onCheckboxChange (newValue, oldValue) {
-      this.title = 'VALUE: ' + (newValue ? 'TRUE' : 'FALSE')
-      console.log(this.selected)
+    onCheckboxChange () {
+      bus.$emit('onEmployeesSelected', this.selected)
+    },
+    toggleAll () {
+      if (this.selected.length) this.selected = []
+      else this.selected = this.items.slice()
+
+      this.onCheckboxChange()
+    },
+    changeSort (column) {
+      if (this.pagination.sortBy === column) {
+        this.pagination.descending = !this.pagination.descending
+      } else {
+        this.pagination.sortBy = column
+        this.pagination.descending = false
+      }
     }
   },
   created () {
     bus.$on('addNewEmployee', (newEmployee) => {
-      console.log(newEmployee)
       var emp = Object.assign({}, newEmployee)
       this.items.push(emp)
+    })
+    bus.$on('deleteSelectedEmployees', () => {
+      if (this.selected.length > 0) {
+        this.selected.forEach((s) => {
+          const indexInTable = this.items.indexOf(s)
+          const indexInSelected = this.selected.indexOf(s)
+          this.items.splice(indexInTable, 1)
+          this.selected.splice(indexInSelected, 1)
+        })
+      }
     })
   }
 }

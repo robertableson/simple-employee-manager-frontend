@@ -1,5 +1,6 @@
 <template>
   <div>
+    <v-fab-transition>
     <v-btn
        fixed
        dark
@@ -7,22 +8,12 @@
        bottom
        right
        :color="button.color"
+       :key="button.color"
        @click="button.clickEvent"
      >
-       <v-icon>add</v-icon>
+       <v-icon>{{button.icon}}</v-icon>
      </v-btn>
-     <v-fab-transition>
-      <v-btn
-        color="red"
-        dark
-        fab
-        fixed
-        bottom
-        left
-      >
-        <v-icon>close</v-icon>
-      </v-btn>
-    </v-fab-transition>
+     </v-fab-transition>
   </div>
 </template>
 
@@ -33,6 +24,12 @@ export default {
   methods: {
     openAddEmployeeDialog: function () {
       bus.$emit('openAddEmployeeDialog')
+    },
+    deleteSelectedEmployees: function () {
+      bus.$emit('deleteSelectedEmployees')
+      this.button.color = 'blue'
+      this.button.icon = 'add'
+      this.button.clickEvent = this.openAddEmployeeDialog
     }
   },
   data () {
@@ -43,6 +40,22 @@ export default {
         clickEvent: this.openAddEmployeeDialog
       }
     }
+  },
+  created () {
+    bus.$on('onEmployeesSelected', (selectedEmployees) => {
+      console.log(selectedEmployees)
+      if (selectedEmployees.length > 0) {
+        this.button.color = 'red'
+        this.button.icon = 'close'
+        this.button.clickEvent = this.deleteSelectedEmployees
+      } else {
+        this.button.color = 'blue'
+        this.button.icon = 'add'
+        this.button.clickEvent = this.openAddEmployeeDialog
+      }
+      // var emp = Object.assign({}, newEmployee)
+      // this.items.push(emp)
+    })
   }
 }
 </script>
