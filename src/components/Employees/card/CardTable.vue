@@ -1,13 +1,5 @@
 <template>
-  <!--<v-data-table
-    v-bind:headers="headers"
-    v-bind:items="items"
-    v-bind:search="search"
-    v-model="selected"
-    item-key="id"
-    select-all
-    class="elevation-1"
-  >-->
+  <div>
   <v-data-table
       v-model="selected"
       v-bind:headers="headers"
@@ -158,6 +150,19 @@
       </td>
     </template>
   </v-data-table>
+
+  <v-snackbar
+     :timeout="timeout"
+     :color="color"
+     :multi-line="mode === 'multi-line'"
+     :vertical="mode === 'vertical'"
+     v-model="snackbar"
+   >
+     {{ text }}
+     <v-btn color="primary" @click="undoEmployeesDelete">Annuler</v-btn>
+     <v-btn dark flat @click="snackbar = false">Ok</v-btn>
+   </v-snackbar>
+</div>
 </template>
 
 <script>
@@ -169,10 +174,16 @@ export default {
   ],
   data () {
     return {
+      snackbar: false,
+      color: '',
+      mode: '',
+      timeout: 10000,
+      text: 'Suppression réussie.',
       pagination: {
         sortBy: 'name'
       },
       selected: [],
+      undoSelected: [],
       max25chars: (v) => v.length <= 25 || 'Input too long!',
       tmp: '',
       headers: [
@@ -248,6 +259,14 @@ export default {
         this.pagination.sortBy = column
         this.pagination.descending = false
       }
+    },
+    undoEmployeesDelete () {
+      this.selected = this.undoSelected
+      this.selected.forEach((s) => {
+        this.items.push(s)
+      })
+      this.snackbar = false
+      bus.$emit('undoEmployeesDelete')
     }
   },
   created () {
@@ -259,10 +278,12 @@ export default {
       if (this.selected.length > 0) {
         this.selected.forEach((s) => {
           const indexInTable = this.items.indexOf(s)
-          const indexInSelected = this.selected.indexOf(s)
           this.items.splice(indexInTable, 1)
-          this.selected.splice(indexInSelected, 1)
         })
+
+        this.snackbar = true
+        this.undoSelected = this.selected
+        this.selected = []
       }
     })
   }

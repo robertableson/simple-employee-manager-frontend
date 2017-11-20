@@ -43,7 +43,6 @@ export default {
   },
   created () {
     bus.$on('onEmployeesSelected', (selectedEmployees) => {
-      console.log(selectedEmployees)
       if (selectedEmployees.length > 0) {
         this.button.color = 'red'
         this.button.icon = 'close'
@@ -53,8 +52,11 @@ export default {
         this.button.icon = 'add'
         this.button.clickEvent = this.openAddEmployeeDialog
       }
-      // var emp = Object.assign({}, newEmployee)
-      // this.items.push(emp)
+    })
+    bus.$on('undoEmployeesDelete', (selectedEmployees) => {
+      this.button.color = 'red'
+      this.button.icon = 'close'
+      this.button.clickEvent = this.deleteSelectedEmployees
     })
   }
 }
