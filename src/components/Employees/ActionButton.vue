@@ -15,13 +15,15 @@
 </template>
 
 <script>
+import {bus} from '../../main'
+
 export default {
   data () {
     return {}
   },
   methods: {
     openAddEmployeeDialog: function () {
-      this.$emit('openAddEmployeeDialog')
+      bus.$emit('openAddEmployeeDialog')
     }
   }
 }

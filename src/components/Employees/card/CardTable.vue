@@ -132,6 +132,8 @@
 </template>
 
 <script>
+import {bus} from '../../../main'
+
 export default {
   props: [
     'search'
@@ -202,6 +204,11 @@ export default {
       console.log(this.selected)
       this.title = 'VALUE: ' + (newValue ? 'TRUE' : 'FALSE')
     }
+  },
+  created () {
+    bus.$on('addNewEmployee', (employee) => {
+      this.items.push(employee)
+    })
   }
 }
 </script>
