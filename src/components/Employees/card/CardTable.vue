@@ -205,8 +205,10 @@ export default {
     }
   },
   created () {
-    bus.$on('addNewEmployee', (employee) => {
-      this.items.push(employee)
+    bus.$on('addNewEmployee', (newEmployee) => {
+      console.log(newEmployee)
+      var emp = Object.assign({}, newEmployee)
+      this.items.push(emp)
     })
   }
 }

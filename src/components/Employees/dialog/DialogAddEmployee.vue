@@ -7,13 +7,13 @@
       <v-card-text>
 
         <v-text-field
-          v-model="employee.firstName"
+          v-model="employeeForm.firstName"
           label="Prénom"
           prepend-icon="person"
         ></v-text-field>
 
         <v-text-field
-          v-model="employee.lastName"
+          v-model="employeeForm.lastName"
           label="Nom"
           prepend-icon="person"
         ></v-text-field>
@@ -31,11 +31,11 @@
           <v-text-field
             slot="activator"
             label="Date de naissance"
-            v-model="employee.birthDate"
+            v-model="employeeForm.birthDate"
             prepend-icon="event"
             readonly
           ></v-text-field>
-          <v-date-picker v-model="employee.birthDate" no-title scrollable actions>
+          <v-date-picker v-model="employeeForm.birthDate" no-title scrollable actions>
             <template slot-scope="{ save, cancel }">
               <v-card-actions>
                 <v-spacer></v-spacer>
@@ -59,11 +59,11 @@
         <v-text-field
           slot="activator"
           label="Date d'embauche"
-          v-model="employee.hireDate"
+          v-model="employeeForm.hireDate"
           prepend-icon="event"
           readonly
         ></v-text-field>
-        <v-date-picker v-model="employee.hireDate" no-title scrollable actions>
+        <v-date-picker v-model="employeeForm.hireDate" no-title scrollable actions>
           <template slot-scope="{ save, cancel }">
             <v-card-actions>
               <v-spacer></v-spacer>
@@ -75,7 +75,7 @@
       </v-menu>
 
       <v-text-field
-        v-model="employee.hourlySalary"
+        v-model="employeeForm.hourlySalary"
         type="number"
         label="Salaire horaire"
         prepend-icon="attach_money"
@@ -98,11 +98,11 @@ export default {
     return {
       employeeDialogOpen: false,
       date: null,
-      employee: {
-        firstName: '',
-        lastName: '',
-        birthDate: '',
-        hireDate: '',
+      employeeForm: {
+        firstName: 'a',
+        lastName: 'a',
+        birthDate: '2017-11-11',
+        hireDate: '2017-11-11',
         hourlySalary: 10
       }
     }
@@ -112,13 +112,13 @@ export default {
       this.employeeDialogOpen = false
     },
     addNewEmployee: function () {
-      bus.$emit('addNewEmployee', this.employee)
+      bus.$emit('addNewEmployee', this.employeeForm)
       this.closeAddEmployeeDialog()
-      this.employee.firstName = ''
-      this.employee.lastName = ''
-      this.employee.birthDate = ''
-      this.employee.hireDate = ''
-      this.employee.hourlySalary = 10
+      this.employeeForm.firstName = ''
+      this.employeeForm.lastName = ''
+      this.employeeForm.birthDate = ''
+      this.employeeForm.hireDate = ''
+      this.employeeForm.hourlySalary = 10
     }
   },
   created () {
