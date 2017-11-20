@@ -201,7 +201,6 @@ export default {
   },
   methods: {
     onCheckboxChange (newValue, oldValue) {
-      console.log(this.selected)
       this.title = 'VALUE: ' + (newValue ? 'TRUE' : 'FALSE')
     }
   },

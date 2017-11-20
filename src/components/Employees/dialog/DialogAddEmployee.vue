@@ -2,7 +2,7 @@
   <v-dialog persistent v-model="employeeDialogOpen" max-width="500px">
     <v-card>
       <v-card-title>
-        Ajouter
+        Ajouter un employé
       </v-card-title>
       <v-card-text>
 
@@ -77,7 +77,7 @@
       <v-text-field
         v-model="employee.hourlySalary"
         type="number"
-        label="Salaire"
+        label="Salaire horaire"
         prepend-icon="attach_money"
       ></v-text-field>
 
@@ -99,11 +99,11 @@ export default {
       employeeDialogOpen: false,
       date: null,
       employee: {
-        firstName: 'Billy',
-        lastName: 'Bong',
-        birthDate: '2017-11-11',
-        hireDate: '2017-11-11',
-        hourlySalary: 25
+        firstName: '',
+        lastName: '',
+        birthDate: '',
+        hireDate: '',
+        hourlySalary: 10
       }
     }
   },
@@ -113,6 +113,12 @@ export default {
     },
     addNewEmployee: function () {
       bus.$emit('addNewEmployee', this.employee)
+      this.closeAddEmployeeDialog()
+      this.employee.firstName = ''
+      this.employee.lastName = ''
+      this.employee.birthDate = ''
+      this.employee.hireDate = ''
+      this.employee.hourlySalary = 10
     }
   },
   created () {
