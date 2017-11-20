@@ -58,7 +58,7 @@
           drawer: false,
           breakpoint: 960,
           items: [
-            {icon: 'dashboard', title: 'Tableau de bord', link: '/'},
+            {icon: 'apps', title: 'Tableau de bord', link: '/'},
             {icon: 'people', title: 'Employés', link: '/employes'}
           ],
           miniVariant: false
