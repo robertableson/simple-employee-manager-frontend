@@ -6,11 +6,23 @@
        fab
        bottom
        right
-       color="primary"
-       @click="openAddEmployeeDialog"
+       :color="button.color"
+       @click="button.clickEvent"
      >
        <v-icon>add</v-icon>
      </v-btn>
+     <v-fab-transition>
+      <v-btn
+        color="red"
+        dark
+        fab
+        fixed
+        bottom
+        left
+      >
+        <v-icon>close</v-icon>
+      </v-btn>
+    </v-fab-transition>
   </div>
 </template>
 
@@ -18,12 +30,18 @@
 import {bus} from '../../main'
 
 export default {
-  data () {
-    return {}
-  },
   methods: {
     openAddEmployeeDialog: function () {
       bus.$emit('openAddEmployeeDialog')
+    }
+  },
+  data () {
+    return {
+      button: {
+        color: 'primary',
+        icon: 'add',
+        clickEvent: this.openAddEmployeeDialog
+      }
     }
   }
 }
