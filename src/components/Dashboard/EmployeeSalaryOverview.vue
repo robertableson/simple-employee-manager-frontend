@@ -69,16 +69,16 @@ export default {
         totalAmount += e.hourlySalary
       })
 
-      this.employeesStats.hourlyAverageWage = totalAmount / this.employeeList.length
+      this.employeesStats.hourlyAverageWage = (totalAmount / this.employeeList.length).toFixed(2)
     },
     calculateDailyAverageWage: function () {
-      this.employeesStats.dailyAverageWage = this.employeesStats.hourlyAverageWage * 8
+      this.employeesStats.dailyAverageWage = (this.employeesStats.hourlyAverageWage * 8).toFixed(2)
     },
     calculateMonthlyAverageWage: function () {
-      this.employeesStats.monthlyAverageWage = this.employeesStats.dailyAverageWage * 22
+      this.employeesStats.monthlyAverageWage = (this.employeesStats.dailyAverageWage * 22).toFixed(2)
     },
     calculateYearlyAverageWage: function () {
-      this.employeesStats.yearlyAverageWage = this.employeesStats.monthlyAverageWage * 12
+      this.employeesStats.yearlyAverageWage = (this.employeesStats.monthlyAverageWage * 12).toFixed(2)
     }
   },
   mounted () {

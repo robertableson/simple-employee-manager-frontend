@@ -99,8 +99,8 @@ export default {
       employeeDialogOpen: false,
       date: null,
       employeeForm: {
-        firstName: 'a',
-        lastName: 'a',
+        firstName: 'Raymond',
+        lastName: 'Cormier',
         birthDate: '2017-11-11',
         hireDate: '2017-11-11',
         hourlySalary: 10
