@@ -34,7 +34,7 @@
           <v-flex xs12>
             <v-card raised color="red lighten-2" class="white--text elevation-3">
               <v-card-text>
-                <p class="display-1 text-xs-right mb-0 pt-3">2 ans 3 mois et 21 jours</p>
+                <p class="display-1 text-xs-right mb-0 pt-3">{{this.employeesStats.averageHireDaysCount}} jours</p>
                 <p class="text-xs-right">Moyenne de durée en fonction</p>
               </v-card-text>
             </v-card>
@@ -57,7 +57,8 @@ export default {
         hourlyAverageWage: 0,
         dailyAverageWage: 0,
         monthlyAverageWage: 0,
-        yearlyAverageWage: 0
+        yearlyAverageWage: 0,
+        averageHireDaysCount: 0
       }
     }
   },
@@ -69,35 +70,53 @@ export default {
         totalAmount += e.hourlySalary
       })
 
-      this.employeesStats.hourlyAverageWage = (totalAmount / this.employeeList.length).toFixed(2)
+      this.employeesStats.hourlyAverageWage = this.formatNumber(
+        totalAmount.toFixed(2)
+      )
     },
     calculateDailyAverageWage: function () {
-      this.employeesStats.dailyAverageWage = (this.employeesStats.hourlyAverageWage * 8).toFixed(2)
+      this.employeesStats.dailyAverageWage = this.formatNumber(
+        (this.employeesStats.hourlyAverageWage * 8).toFixed(2)
+      )
     },
     calculateMonthlyAverageWage: function () {
-      this.employeesStats.monthlyAverageWage = (this.employeesStats.dailyAverageWage * 22).toFixed(2)
+      this.employeesStats.monthlyAverageWage = this.formatNumber(
+        (this.employeesStats.dailyAverageWage * 22).toFixed(2)
+      )
     },
     calculateYearlyAverageWage: function () {
-      this.employeesStats.yearlyAverageWage = (this.employeesStats.monthlyAverageWage * 12).toFixed(2)
+      console.log('Monthly: ' + parseInt(this.employeesStats.monthlyAverageWage))
+      console.log('Yearly: ' + parseInt(this.employeesStats.monthlyAverageWage) * 12)
+      this.employeesStats.yearlyAverageWage = this.formatNumber(
+        (this.employeesStats.monthlyAverageWage * 12).toFixed(2)
+      )
+    },
+    calculateAverageHireTime: function () {
+      var totalDays = 0
+
+      this.employeeList.forEach((e) => {
+        var timeSinceHireInMs = new Date().getTime() - this.toDate(e.hireDate).getTime()
+        var daysCount = Math.ceil(timeSinceHireInMs / (1000 * 3600 * 24))
+        totalDays += daysCount
+      })
+
+      this.employeesStats.averageHireDaysCount = (totalDays / this.employeeList.length).toFixed(1)
+    },
+    toDate: function (dateStr) {
+      var parts = dateStr.split('-')
+      return new Date(parts[0], parts[1] - 1, parts[2])
+    },
+    formatNumber: function (num) {
+      console.log(num)
+      return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
     }
   },
   mounted () {
-    console.log(
-      this.employeesStats.hourlyAverageWage + ' ' +
-      this.employeesStats.dailyAverageWage + ' ' +
-      this.employeesStats.monthlyAverageWage + ' ' +
-      this.employeesStats.yearlyAverageWage
-    )
     this.calculateHourlyAverageWage()
     this.calculateDailyAverageWage()
     this.calculateMonthlyAverageWage()
     this.calculateYearlyAverageWage()
-    console.log(
-      this.employeesStats.hourlyAverageWage + ' ' +
-      this.employeesStats.dailyAverageWage + ' ' +
-      this.employeesStats.monthlyAverageWage + ' ' +
-      this.employeesStats.yearlyAverageWage
-    )
+    this.calculateAverageHireTime()
   }
 }
 </script>
