@@ -1,7 +1,5 @@
 <template>
-  <div>
     <employee-salary-overview></employee-salary-overview>
-  </div>
 </template>
 
 <script>

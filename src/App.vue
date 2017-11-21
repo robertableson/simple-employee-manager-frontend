@@ -65,7 +65,27 @@
         },
         header: {
           title: 'Gestion 2000'
-        }
+        },
+        employeesTestList: [
+          {
+            value: false,
+            id: 1,
+            firstName: 'Billy1',
+            lastName: 'Bong1',
+            birthDate: '2017-01-01',
+            hireDate: '2017-01-01',
+            hourlySalary: 1
+          },
+          {
+            value: false,
+            id: 2,
+            firstName: 'Billy2',
+            lastName: 'Bong2',
+            birthDate: '2017-02-02',
+            hireDate: '2017-02-02',
+            hourlySalary: 2
+          }
+        ]
       }
     }
   }

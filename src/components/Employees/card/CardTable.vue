@@ -6,7 +6,7 @@
       v-bind:items="items"
       select-all
       v-bind:pagination.sync="pagination"
-      item-key="id"
+      item-key="birthDate"
       class="elevation-1"
     >
     <template slot="headers" slot-scope="props">
@@ -166,7 +166,7 @@
 </template>
 
 <script>
-import {bus} from '../../../main'
+import {bus, testEmployeeList} from '../../../main'
 
 export default {
   props: [
@@ -174,6 +174,7 @@ export default {
   ],
   data () {
     return {
+      items: testEmployeeList,
       snackbar: false,
       color: '',
       mode: '',
@@ -192,53 +193,6 @@ export default {
         { text: 'Date de naissance', value: 'birthDate' },
         { text: 'Date d\'embauche', value: 'hireDate' },
         { text: 'Salaire horaire', value: 'hourlySalary' }
-      ],
-      items: [
-        {
-          value: false,
-          id: 1,
-          firstName: 'bill1',
-          lastName: 'Zik',
-          birthDate: '1111-11-11',
-          hireDate: '1111-11-11',
-          hourlySalary: 24
-        },
-        {
-          value: false,
-          id: 2,
-          firstName: 'bill2',
-          lastName: 'Bong',
-          birthDate: '1111-11-11',
-          hireDate: '1111-11-11',
-          hourlySalary: 244
-        },
-        {
-          value: false,
-          id: 3,
-          firstName: 'bill3',
-          lastName: 'Zik',
-          birthDate: '1111-11-11',
-          hireDate: '1111-11-11',
-          hourlySalary: 24
-        },
-        {
-          value: false,
-          id: 4,
-          firstName: 'bill4',
-          lastName: 'Zik',
-          birthDate: '1111-11-11',
-          hireDate: '1111-11-11',
-          hourlySalary: 24
-        },
-        {
-          value: false,
-          id: 5,
-          firstName: 'bill5',
-          lastName: 'Zik',
-          birthDate: '1111-11-11',
-          hireDate: '1111-11-11',
-          hourlySalary: 24
-        }
       ]
     }
   },

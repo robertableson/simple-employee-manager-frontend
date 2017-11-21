@@ -2,7 +2,7 @@
 
   <v-container fluid grid-list-md>
     <v-layout row wrap>
-      <v-flex  xs12 sm6>
+      <v-flex xs12 sm6>
         <v-card color="green" class="white--text elevation-3">
           <v-card-text>
             <p class="display-1 text-xs-right mb-0 pt-3">76 $</p>
@@ -45,6 +45,16 @@
 </template>
 
 <script>
+import {testEmployeeList} from '../../main'
+
 export default {
+  data () {
+    return {
+      EmployeeList: testEmployeeList
+    }
+  },
+  mounted () {
+    console.log(this.items)
+  }
 }
 </script>
