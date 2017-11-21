@@ -5,13 +5,13 @@
       <v-flex xs12 sm6>
         <v-card color="green" class="white--text elevation-3">
           <v-card-text>
-            <p class="display-1 text-xs-right mb-0 pt-3">{{this.employeesStats.hourlyAverageWage}} $</p>
+            <p class="display-1 text-xs-right mb-0 pt-3">{{ formatNumber(this.employeesStats.hourlyAverageWage) }} $</p>
             <p class="text-xs-right">Coût horaire</p>
-            <p class="display-1 text-xs-right mb-0 pt-3">{{this.employeesStats.dailyAverageWage}} $</p>
+            <p class="display-1 text-xs-right mb-0 pt-3">{{ formatNumber(this.employeesStats.dailyAverageWage) }} $</p>
             <p class="text-xs-right">Coût journalier</p>
-            <p class="display-1 text-xs-right mb-0 pt-3">{{this.employeesStats.monthlyAverageWage}} $</p>
+            <p class="display-1 text-xs-right mb-0 pt-3">{{ formatNumber(this.employeesStats.monthlyAverageWage) }} $</p>
             <p class="text-xs-right">Coût mensuel</p>
-            <p class="display-1 text-xs-right mb-0 pt-3">{{this.employeesStats.yearlyAverageWage}} $</p>
+            <p class="display-1 text-xs-right mb-0 pt-3">{{ formatNumber(this.employeesStats.yearlyAverageWage) }} $</p>
             <p class="text-xs-right">Coût annuel</p>
           </v-card-text>
         </v-card>
@@ -34,7 +34,7 @@
           <v-flex xs12>
             <v-card raised color="red lighten-2" class="white--text elevation-3">
               <v-card-text>
-                <p class="display-1 text-xs-right mb-0 pt-3">{{this.employeesStats.averageHireDaysCount}} jours</p>
+                <p class="display-1 text-xs-right mb-0 pt-3">{{ formatNumber(this.employeesStats.averageHireDaysCount) }} jours</p>
                 <p class="text-xs-right">Moyenne de durée en fonction</p>
               </v-card-text>
             </v-card>
@@ -70,26 +70,16 @@ export default {
         totalAmount += e.hourlySalary
       })
 
-      this.employeesStats.hourlyAverageWage = this.formatNumber(
-        totalAmount.toFixed(2)
-      )
+      this.employeesStats.hourlyAverageWage = totalAmount.toFixed(2)
     },
     calculateDailyAverageWage: function () {
-      this.employeesStats.dailyAverageWage = this.formatNumber(
-        (this.employeesStats.hourlyAverageWage * 8).toFixed(2)
-      )
+      this.employeesStats.dailyAverageWage = (this.employeesStats.hourlyAverageWage * 8).toFixed(2)
     },
     calculateMonthlyAverageWage: function () {
-      this.employeesStats.monthlyAverageWage = this.formatNumber(
-        (this.employeesStats.dailyAverageWage * 22).toFixed(2)
-      )
+      this.employeesStats.monthlyAverageWage = (this.employeesStats.dailyAverageWage * 22).toFixed(2)
     },
     calculateYearlyAverageWage: function () {
-      console.log('Monthly: ' + parseInt(this.employeesStats.monthlyAverageWage))
-      console.log('Yearly: ' + parseInt(this.employeesStats.monthlyAverageWage) * 12)
-      this.employeesStats.yearlyAverageWage = this.formatNumber(
-        (this.employeesStats.monthlyAverageWage * 12).toFixed(2)
-      )
+      this.employeesStats.yearlyAverageWage = (this.employeesStats.monthlyAverageWage * 12).toFixed(2)
     },
     calculateAverageHireTime: function () {
       var totalDays = 0
@@ -107,8 +97,8 @@ export default {
       return new Date(parts[0], parts[1] - 1, parts[2])
     },
     formatNumber: function (num) {
-      console.log(num)
-      return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
+      var formattedNum = num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
+      return formattedNum
     }
   },
   mounted () {

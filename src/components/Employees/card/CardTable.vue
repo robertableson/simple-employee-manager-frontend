@@ -241,6 +241,10 @@ export default {
         this.selected = []
       }
     })
+  },
+  beforeDestroy () {
+    bus.$off('addNewEmployee')
+    bus.$off('deleteSelectedEmployees')
   }
 }
 </script>
