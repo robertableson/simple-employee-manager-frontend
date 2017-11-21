@@ -131,13 +131,14 @@
       <td class="text-xs-right">
         <v-edit-dialog
           @open="tmp = props.item.hourlySalary"
-          @save="props.item.hourlySalary = tmp || props.item.hourlySalary"
+          @save="props.item.hourlySalary = parseInt(tmp) || props.item.hourlySalary"
           large
           lazy
         >
           <div>{{ props.item.hourlySalary }}</div>
           <div slot="input" class="mt-3 title">Modifier salaire horaire</div>
           <v-text-field
+            type="number"
             slot="input"
             label="Edit"
             v-model="tmp"

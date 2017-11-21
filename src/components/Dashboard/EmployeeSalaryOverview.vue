@@ -5,11 +5,13 @@
       <v-flex xs12 sm6>
         <v-card color="green" class="white--text elevation-3">
           <v-card-text>
-            <p class="display-1 text-xs-right mb-0 pt-3">76 $</p>
+            <p class="display-1 text-xs-right mb-0 pt-3">{{this.employeesStats.hourlyAverageWage}} $</p>
             <p class="text-xs-right">Coût horaire</p>
-            <p class="display-1 text-xs-right mb-0 pt-3">7687 $</p>
+            <p class="display-1 text-xs-right mb-0 pt-3">{{this.employeesStats.dailyAverageWage}} $</p>
+            <p class="text-xs-right">Coût journalier</p>
+            <p class="display-1 text-xs-right mb-0 pt-3">{{this.employeesStats.monthlyAverageWage}} $</p>
             <p class="text-xs-right">Coût mensuel</p>
-            <p class="display-1 text-xs-right mb-0 pt-3">768765 $</p>
+            <p class="display-1 text-xs-right mb-0 pt-3">{{this.employeesStats.yearlyAverageWage}} $</p>
             <p class="text-xs-right">Coût annuel</p>
           </v-card-text>
         </v-card>
@@ -21,7 +23,7 @@
           <v-flex xs12>
             <v-card fill-height color="indigo" class="white--text elevation-3">
               <v-card-text>
-                <p class="display-1 text-xs-right mb-0 pt-3">5</p>
+                <p class="display-1 text-xs-right mb-0 pt-3">{{this.employeeList.length}}</p>
                 <p class="text-xs-right">Employés</p>
               </v-card-text>
             </v-card>
@@ -50,11 +52,52 @@ import {testEmployeeList} from '../../main'
 export default {
   data () {
     return {
-      EmployeeList: testEmployeeList
+      employeeList: testEmployeeList,
+      employeesStats: {
+        hourlyAverageWage: 0,
+        dailyAverageWage: 0,
+        monthlyAverageWage: 0,
+        yearlyAverageWage: 0
+      }
+    }
+  },
+  methods: {
+    calculateHourlyAverageWage: function () {
+      var totalAmount = 0
+
+      this.employeeList.forEach((e) => {
+        totalAmount += e.hourlySalary
+      })
+
+      this.employeesStats.hourlyAverageWage = totalAmount / this.employeeList.length
+    },
+    calculateDailyAverageWage: function () {
+      this.employeesStats.dailyAverageWage = this.employeesStats.hourlyAverageWage * 8
+    },
+    calculateMonthlyAverageWage: function () {
+      this.employeesStats.monthlyAverageWage = this.employeesStats.dailyAverageWage * 22
+    },
+    calculateYearlyAverageWage: function () {
+      this.employeesStats.yearlyAverageWage = this.employeesStats.monthlyAverageWage * 12
     }
   },
   mounted () {
-    console.log(this.items)
+    console.log(
+      this.employeesStats.hourlyAverageWage + ' ' +
+      this.employeesStats.dailyAverageWage + ' ' +
+      this.employeesStats.monthlyAverageWage + ' ' +
+      this.employeesStats.yearlyAverageWage
+    )
+    this.calculateHourlyAverageWage()
+    this.calculateDailyAverageWage()
+    this.calculateMonthlyAverageWage()
+    this.calculateYearlyAverageWage()
+    console.log(
+      this.employeesStats.hourlyAverageWage + ' ' +
+      this.employeesStats.dailyAverageWage + ' ' +
+      this.employeesStats.monthlyAverageWage + ' ' +
+      this.employeesStats.yearlyAverageWage
+    )
   }
 }
 </script>

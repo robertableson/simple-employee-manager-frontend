@@ -19,7 +19,7 @@ export var testEmployeeList = [
     lastName: 'Bong1',
     birthDate: '2017-01-01',
     hireDate: '2017-01-01',
-    hourlySalary: 11
+    hourlySalary: 15
   },
   {
     value: false,
@@ -28,7 +28,7 @@ export var testEmployeeList = [
     lastName: 'Bong2',
     birthDate: '2017-02-0',
     hireDate: '2017-02-02',
-    hourlySalary: 12
+    hourlySalary: 20
   }
 ]
 
