@@ -145,19 +145,6 @@ export default {
         this.employeeForm.hourlySalary = 10
       }
     }
-    /* addNewEmployee: function () {
-      if (this.validateEmployee(this.employeeForm)) {
-        bus.$emit('addNewEmployee', this.employeeForm)
-        this.closeAddEmployeeDialog()
-        this.employeeForm.firstName = ''
-        this.employeeForm.lastName = ''
-        this.employeeForm.birthDate = ''
-        this.employeeForm.hireDate = ''
-        this.employeeForm.hourlySalary = 10
-      } else {
-        bus.$emit('addNewEmployeeFailed', 'Tous les champs doivent être remplis.')
-      }
-    } */
   },
   created () {
     bus.$on('openAddEmployeeDialog', () => {

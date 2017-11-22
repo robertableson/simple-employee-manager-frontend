@@ -5,13 +5,13 @@
       <v-flex xs12 sm6>
         <v-card color="green" class="white--text elevation-3">
           <v-card-text>
-            <p class="display-1 text-xs-right mb-0 pt-3">{{ formatNumber(this.employeesStats.hourlyAverageWage) }} $</p>
+            <p class="display-1 text-xs-right mb-0 pt-3">{{ formatNumber(this.employeesStats.hourlyTotalWage) }} $</p>
             <p class="text-xs-right">Coût horaire</p>
-            <p class="display-1 text-xs-right mb-0 pt-3">{{ formatNumber(this.employeesStats.dailyAverageWage) }} $</p>
+            <p class="display-1 text-xs-right mb-0 pt-3">{{ formatNumber(this.employeesStats.dailyTotalWage) }} $</p>
             <p class="text-xs-right">Coût journalier</p>
-            <p class="display-1 text-xs-right mb-0 pt-3">{{ formatNumber(this.employeesStats.monthlyAverageWage) }} $</p>
+            <p class="display-1 text-xs-right mb-0 pt-3">{{ formatNumber(this.employeesStats.monthlyTotalWage) }} $</p>
             <p class="text-xs-right">Coût mensuel</p>
-            <p class="display-1 text-xs-right mb-0 pt-3">{{ formatNumber(this.employeesStats.yearlyAverageWage) }} $</p>
+            <p class="display-1 text-xs-right mb-0 pt-3">{{ formatNumber(this.employeesStats.yearlyTotalWage) }} $</p>
             <p class="text-xs-right">Coût annuel</p>
           </v-card-text>
         </v-card>
@@ -54,32 +54,32 @@ export default {
     return {
       employeeList: testEmployeeList,
       employeesStats: {
-        hourlyAverageWage: 0,
-        dailyAverageWage: 0,
-        monthlyAverageWage: 0,
-        yearlyAverageWage: 0,
+        hourlyTotalWage: 0,
+        dailyTotalWage: 0,
+        monthlyTotalWage: 0,
+        yearlyTotalWage: 0,
         averageHireDaysCount: 0
       }
     }
   },
   methods: {
-    calculateHourlyAverageWage: function () {
+    calculateHourlyTotalWage: function () {
       var totalAmount = 0
 
       this.employeeList.forEach((e) => {
         totalAmount += e.hourlySalary
       })
 
-      this.employeesStats.hourlyAverageWage = totalAmount.toFixed(2)
+      this.employeesStats.hourlyTotalWage = totalAmount.toFixed(2)
     },
-    calculateDailyAverageWage: function () {
-      this.employeesStats.dailyAverageWage = (this.employeesStats.hourlyAverageWage * 8).toFixed(2)
+    calculateDailyTotalWage: function () {
+      this.employeesStats.dailyTotalWage = (this.employeesStats.hourlyTotalWage * 8).toFixed(2)
     },
-    calculateMonthlyAverageWage: function () {
-      this.employeesStats.monthlyAverageWage = (this.employeesStats.dailyAverageWage * 22).toFixed(2)
+    calculateMonthlyTotalWage: function () {
+      this.employeesStats.monthlyTotalWage = (this.employeesStats.dailyTotalWage * 22).toFixed(2)
     },
-    calculateYearlyAverageWage: function () {
-      this.employeesStats.yearlyAverageWage = (this.employeesStats.monthlyAverageWage * 12).toFixed(2)
+    calculateYearlyTotalWage: function () {
+      this.employeesStats.yearlyTotalWage = (this.employeesStats.monthlyTotalWage * 12).toFixed(2)
     },
     calculateAverageHireTime: function () {
       var totalDays = 0
@@ -102,10 +102,10 @@ export default {
     }
   },
   mounted () {
-    this.calculateHourlyAverageWage()
-    this.calculateDailyAverageWage()
-    this.calculateMonthlyAverageWage()
-    this.calculateYearlyAverageWage()
+    this.calculateHourlyTotalWage()
+    this.calculateDailyTotalWage()
+    this.calculateMonthlyTotalWage()
+    this.calculateYearlyTotalWage()
     this.calculateAverageHireTime()
   }
 }
