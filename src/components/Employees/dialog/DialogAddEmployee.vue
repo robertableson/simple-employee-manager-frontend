@@ -8,6 +8,7 @@
         <v-card-text>
 
           <v-text-field
+            validate-on-blur
             v-model="employeeForm.firstName"
             label="Prénom"
             prepend-icon="person"
@@ -16,6 +17,7 @@
           ></v-text-field>
 
           <v-text-field
+            validate-on-blur
             v-model="employeeForm.lastName"
             label="Nom"
             prepend-icon="person"
@@ -34,6 +36,7 @@
             min-width="290px"
           >
             <v-text-field
+              validate-on-blur
               slot="activator"
               label="Date de naissance"
               v-model="employeeForm.birthDate"
@@ -64,6 +67,7 @@
             min-width="290px"
           >
           <v-text-field
+            validate-on-blur
             slot="activator"
             label="Date d'embauche"
             v-model="employeeForm.hireDate"
@@ -84,6 +88,7 @@
         </v-menu>
 
         <v-text-field
+          validate-on-blur
           v-model="employeeForm.hourlySalary"
           type="number"
           label="Salaire horaire"
@@ -142,7 +147,7 @@ export default {
         this.employeeForm.lastName = ''
         this.employeeForm.birthDate = ''
         this.employeeForm.hireDate = ''
-        this.employeeForm.hourlySalary = 10
+        this.employeeForm.hourlySalary = ''
       }
     }
   },
