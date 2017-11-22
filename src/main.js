@@ -11,6 +11,7 @@ Vue.use(Vuetify)
 Vue.config.productionTip = false
 
 export const bus = new Vue()
+
 export var testEmployeeList = [
   {
     value: false,

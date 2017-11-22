@@ -21,7 +21,7 @@
 
         <v-layout row wrap>
           <v-flex xs12>
-            <v-card fill-height color="indigo" class="white--text elevation-3">
+            <v-card fill-height color="indigo" class="white--text elevation-3" id="cardEmployeeCountOverview">
               <v-card-text>
                 <p class="display-1 text-xs-right mb-0 pt-3">{{this.employeeList.length}}</p>
                 <p class="text-xs-right">Employés</p>
@@ -32,7 +32,7 @@
 
         <v-layout row wrap>
           <v-flex xs12>
-            <v-card raised color="red lighten-2" class="white--text elevation-3">
+            <v-card raised color="red" class="white--text elevation-3" id="cardEmployeeDurationOverview">
               <v-card-text>
                 <p class="display-1 text-xs-right mb-0 pt-3">{{ formatNumber(this.employeesStats.averageHireDaysCount) }} jours</p>
                 <p class="text-xs-right">Durée moyenne d'emploiement</p>
@@ -112,18 +112,30 @@ export default {
 </script>
 
 <style scoped>
-  #cardEmployeeSalaryOverview:after {
-    content: "\E87C";
+  #cardEmployeeSalaryOverview, #cardEmployeeCountOverview, #cardEmployeeDurationOverview{
+    position: relative;
+  }
+  #cardEmployeeSalaryOverview:after, #cardEmployeeCountOverview:after, #cardEmployeeDurationOverview:after{
     font-family: FontAwesome;
-    font-style: normal;
-    font-weight: normal;
-    text-decoration: inherit;
     position: absolute;
-    font-size: 400px;
-    color: red;
     top: 50%;
-    left: 50%;
-    margin: -300px 0 0 -200px;
-    z-index: 1;
+    left: 20%;
+    margin-right: -80%;
+    transform: translate(-20%, -50%)
+  }
+  #cardEmployeeSalaryOverview:after{
+    content: "\f155";
+    font-size: 20rem;
+    color: #81C784;
+  }
+  #cardEmployeeCountOverview:after{
+    content: "\f0c0";
+    font-size: 5rem;
+    color: #7986CB;
+  }
+  #cardEmployeeDurationOverview:after{
+    content: "\f017";
+    font-size: 5rem;
+    color: #E57373;
   }
 </style>
