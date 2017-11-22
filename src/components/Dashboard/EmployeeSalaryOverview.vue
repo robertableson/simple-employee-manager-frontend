@@ -3,7 +3,7 @@
   <v-container fluid grid-list-md>
     <v-layout row wrap>
       <v-flex xs12 sm6>
-        <v-card color="green" class="white--text elevation-3">
+        <v-card color="green" class="white--text elevation-3" id="cardEmployeeSalaryOverview">
           <v-card-text>
             <p class="display-1 text-xs-right mb-0 pt-3">{{ formatNumber(this.employeesStats.hourlyTotalWage) }} $</p>
             <p class="text-xs-right">Coût horaire</p>
@@ -35,7 +35,7 @@
             <v-card raised color="red lighten-2" class="white--text elevation-3">
               <v-card-text>
                 <p class="display-1 text-xs-right mb-0 pt-3">{{ formatNumber(this.employeesStats.averageHireDaysCount) }} jours</p>
-                <p class="text-xs-right">Moyenne de durée en fonction</p>
+                <p class="text-xs-right">Durée moyenne d'emploiement</p>
               </v-card-text>
             </v-card>
           </v-flex>
@@ -110,3 +110,20 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+  #cardEmployeeSalaryOverview:after {
+    content: "\E87C";
+    font-family: FontAwesome;
+    font-style: normal;
+    font-weight: normal;
+    text-decoration: inherit;
+    position: absolute;
+    font-size: 400px;
+    color: red;
+    top: 50%;
+    left: 50%;
+    margin: -300px 0 0 -200px;
+    z-index: 1;
+  }
+</style>
