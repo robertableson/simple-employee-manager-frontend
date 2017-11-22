@@ -3,7 +3,7 @@
   <v-container fluid grid-list-md>
     <v-layout row wrap>
       <v-flex xs12 sm6>
-        <v-card color="green" class="white--text elevation-3" id="cardEmployeeSalaryOverview">
+        <v-card color="green lighten-3" class="white--text elevation-3" id="cardEmployeeSalaryOverview">
           <v-card-text>
             <p class="display-1 text-xs-right mb-0 pt-3">{{ formatNumber(this.employeesStats.hourlyTotalWage) }} $</p>
             <p class="text-xs-right">Coût horaire</p>
@@ -21,7 +21,7 @@
 
         <v-layout row wrap>
           <v-flex xs12>
-            <v-card fill-height color="indigo" class="white--text elevation-3" id="cardEmployeeCountOverview">
+            <v-card fill-height color="indigo lighten-3" class="white--text elevation-3" id="cardEmployeeCountOverview">
               <v-card-text>
                 <p class="display-1 text-xs-right mb-0 pt-3">{{this.employeeList.length}}</p>
                 <p class="text-xs-right">Employés</p>
@@ -32,7 +32,7 @@
 
         <v-layout row wrap>
           <v-flex xs12>
-            <v-card raised color="red" class="white--text elevation-3" id="cardEmployeeDurationOverview">
+            <v-card raised color="red lighten-3" class="white--text elevation-3" id="cardEmployeeDurationOverview">
               <v-card-text>
                 <p class="display-1 text-xs-right mb-0 pt-3">{{ formatNumber(this.employeesStats.averageHireDaysCount) }} jours</p>
                 <p class="text-xs-right">Durée moyenne d'emploiement</p>
@@ -115,15 +115,20 @@ export default {
   #cardEmployeeSalaryOverview, #cardEmployeeCountOverview, #cardEmployeeDurationOverview{
     position: relative;
   }
-  #cardEmployeeSalaryOverview:after, #cardEmployeeCountOverview:after, #cardEmployeeDurationOverview:after{
+  #cardEmployeeSalaryOverview p{
+    z-index: 99999 !important;
+  }
+  #cardEmployeeSalaryOverview:before, #cardEmployeeCountOverview:after, #cardEmployeeDurationOverview:after{
     font-family: FontAwesome;
+    z-index: 0 !important;
     position: absolute;
     top: 50%;
     left: 20%;
     margin-right: -80%;
     transform: translate(-20%, -50%)
   }
-  #cardEmployeeSalaryOverview:after{
+  #cardEmployeeSalaryOverview:before{
+    z-index: 0 !important;
     content: "\f155";
     font-size: 20rem;
     color: #81C784;
