@@ -4,7 +4,7 @@
     <v-layout row wrap>
       <v-flex xs12 sm6>
         <v-card color="green lighten-3" class="white--text elevation-3" id="cardEmployeeSalaryOverview">
-          <v-card-text>
+          <v-card-text class="childOfPseudo">
             <p class="display-1 text-xs-right mb-0 pt-3">{{ formatNumber(this.employeesStats.hourlyTotalWage) }} $</p>
             <p class="text-xs-right">Coût horaire</p>
             <p class="display-1 text-xs-right mb-0 pt-3">{{ formatNumber(this.employeesStats.dailyTotalWage) }} $</p>
@@ -22,7 +22,7 @@
         <v-layout row wrap>
           <v-flex xs12>
             <v-card fill-height color="indigo lighten-3" class="white--text elevation-3" id="cardEmployeeCountOverview">
-              <v-card-text>
+              <v-card-text class="childOfPseudo">
                 <p class="display-1 text-xs-right mb-0 pt-3">{{this.employeeList.length}}</p>
                 <p class="text-xs-right">Employés</p>
               </v-card-text>
@@ -33,7 +33,7 @@
         <v-layout row wrap>
           <v-flex xs12>
             <v-card raised color="red lighten-3" class="white--text elevation-3" id="cardEmployeeDurationOverview">
-              <v-card-text>
+              <v-card-text class="childOfPseudo">
                 <p class="display-1 text-xs-right mb-0 pt-3">{{ formatNumber(this.employeesStats.averageHireDaysCount) }} jours</p>
                 <p class="text-xs-right">Durée moyenne d'emploiement</p>
               </v-card-text>
@@ -114,21 +114,21 @@ export default {
 <style scoped>
   #cardEmployeeSalaryOverview, #cardEmployeeCountOverview, #cardEmployeeDurationOverview{
     position: relative;
+    z-index: 0;
   }
-  #cardEmployeeSalaryOverview p{
-    z-index: 99999 !important;
+  #cardEmployeeSalaryOverview .childOfPseudo, #cardEmployeeCountOverview .childOfPseudo, #cardEmployeeDurationOverview .childOfPseudo{
+    z-index: 1;
   }
-  #cardEmployeeSalaryOverview:before, #cardEmployeeCountOverview:after, #cardEmployeeDurationOverview:after{
+  #cardEmployeeSalaryOverview:after, #cardEmployeeCountOverview:after, #cardEmployeeDurationOverview:after{
+    z-index: -1;
     font-family: FontAwesome;
-    z-index: 0 !important;
     position: absolute;
     top: 50%;
     left: 20%;
     margin-right: -80%;
     transform: translate(-20%, -50%)
   }
-  #cardEmployeeSalaryOverview:before{
-    z-index: 0 !important;
+  #cardEmployeeSalaryOverview:after{
     content: "\f155";
     font-size: 20rem;
     color: #81C784;
