@@ -1,13 +1,13 @@
 <template>
-    <employee-salary-overview></employee-salary-overview>
+    <employee-stats-overview></employee-stats-overview>
 </template>
 
 <script>
-import EmployeeSalaryOverview from './EmployeeSalaryOverview.vue'
+import EmployeeStatsOverview from './EmployeeStatsOverview.vue'
 
 export default {
   components: {
-    'employee-salary-overview': EmployeeSalaryOverview
+    'employee-stats-overview': EmployeeStatsOverview
   },
   data () {
     return {
