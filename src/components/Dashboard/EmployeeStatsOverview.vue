@@ -62,7 +62,7 @@ export default {
     }
   },
   methods: {
-    calculateHourlyTotalWage: function () {
+    calculateHourlyTotalWage () {
       var totalAmount = 0
 
       this.employeeList.forEach((e) => {
@@ -71,16 +71,16 @@ export default {
 
       this.employeesStats.hourlyTotalWage = totalAmount.toFixed(2)
     },
-    calculateDailyTotalWage: function () {
+    calculateDailyTotalWage () {
       this.employeesStats.dailyTotalWage = (this.employeesStats.hourlyTotalWage * 8).toFixed(2)
     },
-    calculateMonthlyTotalWage: function () {
+    calculateMonthlyTotalWage () {
       this.employeesStats.monthlyTotalWage = (this.employeesStats.dailyTotalWage * 22).toFixed(2)
     },
-    calculateYearlyTotalWage: function () {
+    calculateYearlyTotalWage () {
       this.employeesStats.yearlyTotalWage = (this.employeesStats.monthlyTotalWage * 12).toFixed(2)
     },
-    calculateAverageHireTime: function () {
+    calculateAverageHireTime () {
       var totalDays = 0
 
       this.employeeList.forEach((e) => {
@@ -91,11 +91,11 @@ export default {
 
       this.employeesStats.averageHireDaysCount = (totalDays / this.employeeList.length).toFixed(1)
     },
-    toDate: function (dateStr) {
+    toDate (dateStr) {
       var parts = dateStr.split('-')
       return new Date(parts[0], parts[1] - 1, parts[2])
     },
-    formatNumber: function (num) {
+    formatNumber (num) {
       var formattedNum = num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
       return formattedNum
     }

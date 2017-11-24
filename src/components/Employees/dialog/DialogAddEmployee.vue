@@ -136,7 +136,7 @@ export default {
     }
   },
   methods: {
-    closeAddEmployeeDialog: function () {
+    closeAddEmployeeDialog () {
       this.employeeDialogOpen = false
     },
     submit () {

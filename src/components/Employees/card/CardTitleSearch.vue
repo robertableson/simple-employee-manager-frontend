@@ -21,7 +21,7 @@
       }
     },
     methods: {
-      searchChanged: function (event) {
+      searchChanged (event) {
         this.$emit('searchChanged', event.target.value)
       }
     }

@@ -22,10 +22,10 @@ import {bus} from '../../main'
 
 export default {
   methods: {
-    openAddEmployeeDialog: function () {
+    openAddEmployeeDialog () {
       bus.$emit('openAddEmployeeDialog')
     },
-    deleteSelectedEmployees: function () {
+    deleteSelectedEmployees () {
       bus.$emit('deleteSelectedEmployees')
       this.button.color = 'blue'
       this.button.icon = 'add'

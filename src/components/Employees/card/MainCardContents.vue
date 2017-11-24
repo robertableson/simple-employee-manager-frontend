@@ -20,7 +20,7 @@
       }
     },
     methods: {
-      searchChanged: function (newSearch) {
+      searchChanged (newSearch) {
         this.search = newSearch
       }
     }
