@@ -116,6 +116,7 @@ export default {
       employeeDialogOpen: false,
       date: null,
       employeeForm: {
+        id: 'eesafa4e6df46awd546',
         firstName: 'Raymond',
         lastName: 'Cormier',
         birthDate: '2017-11-11',
@@ -139,10 +140,21 @@ export default {
     closeAddEmployeeDialog () {
       this.employeeDialogOpen = false
     },
+    s4 () {
+      return Math.floor((1 + Math.random()) * 0x10000)
+        .toString(16)
+        .substring(1)
+    },
+    guid () {
+      return this.s4() + this.s4() + '-' + this.s4() + '-' + this.s4() + '-' +
+        this.s4() + '-' + this.s4() + this.s4() + this.s4()
+    },
+
     submit () {
       if (this.$refs.form.validate()) {
         bus.$emit('addNewEmployee', this.employeeForm)
         this.closeAddEmployeeDialog()
+        this.employeeForm.id = this.guid()
         this.employeeForm.firstName = ''
         this.employeeForm.lastName = ''
         this.employeeForm.birthDate = ''

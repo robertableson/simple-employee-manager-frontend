@@ -7,7 +7,7 @@
       v-bind:search="search"
       select-all
       v-bind:pagination.sync="pagination"
-      item-key="birthDate"
+      item-key="id"
       class="elevation-1"
     >
     <template slot="headers" slot-scope="props">
@@ -153,6 +153,10 @@
     </template>
   </v-data-table>
 
+  <div class="text-xs-center pt-2">
+    <v-pagination v-model="pagination.page" :length="pages"></v-pagination>
+  </div>
+
   <v-snackbar
      :timeout="timeout"
      :color="color"
@@ -196,6 +200,11 @@ export default {
         { text: 'Date d\'embauche', value: 'hireDate' },
         { text: 'Salaire horaire', value: 'hourlySalary' }
       ]
+    }
+  },
+  computed: {
+    pages () {
+      return this.pagination.rowsPerPage ? Math.ceil(this.items.totalItems / this.pagination.rowsPerPage) : 0
     }
   },
   methods: {
