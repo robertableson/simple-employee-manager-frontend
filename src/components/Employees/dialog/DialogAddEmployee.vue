@@ -155,11 +155,11 @@ export default {
         bus.$emit('addNewEmployee', this.employeeForm)
         this.closeAddEmployeeDialog()
         this.employeeForm.id = this.guid()
-        this.employeeForm.firstName = ''
+        /* this.employeeForm.firstName = ''
         this.employeeForm.lastName = ''
         this.employeeForm.birthDate = ''
         this.employeeForm.hireDate = ''
-        this.employeeForm.hourlySalary = ''
+        this.employeeForm.hourlySalary = '' */
       }
     }
   },
