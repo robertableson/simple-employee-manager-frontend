@@ -8,6 +8,7 @@
 <script>
   import CardTitleSearch from './CardTitleSearch.vue'
   import CardTable from './CardTable.vue'
+  import {bus} from '../../../main'
 
   export default {
     components: {
@@ -23,6 +24,14 @@
       searchChanged (newSearch) {
         this.search = newSearch
       }
+    },
+    created () {
+      bus.$on('searchChanged', (searchQuery) => {
+        this.search = searchQuery
+      })
+    },
+    beforeDestroy () {
+      bus.$off('searchChanged')
     }
   }
 </script>

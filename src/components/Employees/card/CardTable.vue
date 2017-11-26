@@ -4,6 +4,7 @@
       v-model="selected"
       v-bind:headers="headers"
       v-bind:items="items"
+      v-bind:search="search"
       select-all
       v-bind:pagination.sync="pagination"
       item-key="birthDate"

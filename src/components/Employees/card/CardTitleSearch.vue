@@ -14,16 +14,18 @@
 </template>
 
 <script>
-  export default {
-    data () {
-      return {
-        search: ''
-      }
-    },
-    methods: {
-      searchChanged (event) {
-        this.$emit('searchChanged', event.target.value)
-      }
+import {bus} from '../../../main'
+
+export default {
+  data () {
+    return {
+      search: ''
+    }
+  },
+  methods: {
+    searchChanged (event) {
+      bus.$emit('searchChanged', event.target.value)
     }
   }
+}
 </script>

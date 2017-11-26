@@ -8,10 +8,6 @@ import EmployeeStatsOverview from './EmployeeStatsOverview.vue'
 export default {
   components: {
     'employee-stats-overview': EmployeeStatsOverview
-  },
-  data () {
-    return {
-    }
   }
 }
 </script>
