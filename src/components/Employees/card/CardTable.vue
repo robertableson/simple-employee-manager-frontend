@@ -9,7 +9,8 @@
       v-bind:pagination.sync="pagination"
       item-key="id"
       class="elevation-1"
-    >
+      hide-actions
+  >
     <template slot="headers" slot-scope="props">
       <tr>
         <th>

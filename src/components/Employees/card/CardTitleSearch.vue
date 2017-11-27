@@ -1,15 +1,21 @@
 <template>
   <v-card-title>
-    Employés
-    <v-spacer></v-spacer>
-    <v-text-field
-      append-icon="search"
-      label="Search"
-      single-line
-      hide-details
-      v-model="search"
-       @keyup="searchChanged"
-    ></v-text-field>
+    <v-layout row wrap>
+      <v-flex md6>
+        Employés
+      </v-flex>
+      <v-flex md6>
+        <v-text-field
+          append-icon="search"
+          label="Search"
+          single-line
+          hide-details
+          v-model="search"
+          @keyup="searchChanged"
+          class="searchField"
+        ></v-text-field>
+      </v-flex>
+    </v-layout>
   </v-card-title>
 </template>
 
@@ -29,3 +35,12 @@ export default {
   }
 }
 </script>
+
+<style>
+  .searchField{
+    padding-top: 0;
+  }
+  .searchField label{
+    top: auto;
+  }
+</style>
