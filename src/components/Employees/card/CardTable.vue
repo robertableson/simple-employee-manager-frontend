@@ -159,16 +159,16 @@
   </div>
 
   <v-snackbar
-     :timeout="timeout"
-     :color="color"
-     :multi-line="mode === 'multi-line'"
-     :vertical="mode === 'vertical'"
-     v-model="snackbar"
-   >
-     {{ text }}
-     <v-btn color="primary" @click="undoEmployeesDelete">Annuler</v-btn>
-     <v-btn dark flat @click="snackbar = false">Ok</v-btn>
-   </v-snackbar>
+    :timeout="timeout"
+    :color="color"
+    :multi-line="mode === 'multi-line'"
+    :vertical="mode === 'vertical'"
+    v-model="snackbar"
+  >
+    {{ text }}
+    <v-btn color="primary" @click="undoEmployeesDelete">Annuler</v-btn>
+    <v-btn class="snackbarOkAction" dark flat @click="snackbar = false">Ok</v-btn>
+  </v-snackbar>
 </div>
 </template>
 
@@ -185,7 +185,7 @@ export default {
       snackbar: false,
       color: '',
       mode: '',
-      timeout: 10000,
+      timeout: 1000000,
       text: 'Suppression réussie.',
       pagination: {
         sortBy: 'name'
@@ -259,3 +259,8 @@ export default {
   }
 }
 </script>
+<style>
+  .snackbarOkAction{
+    margin-left: 0 !important;
+  }
+</style>
