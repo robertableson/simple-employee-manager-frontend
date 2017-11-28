@@ -16,8 +16,8 @@ export var testEmployeeList = [
   {
     value: false,
     id: 1,
-    firstName: 'Billy1',
-    lastName: 'Bong1',
+    firstName: 'Billy',
+    lastName: 'Jean',
     birthDate: '2017-01-10',
     hireDate: '2017-01-10',
     hourlySalary: 15
@@ -25,8 +25,8 @@ export var testEmployeeList = [
   {
     value: false,
     id: 2,
-    firstName: 'Billy2',
-    lastName: 'Bong2',
+    firstName: 'Tristan',
+    lastName: 'Drolet',
     birthDate: '2017-02-20',
     hireDate: '2017-02-20',
     hourlySalary: 20
