@@ -2,7 +2,9 @@
   <v-card-title>
     <v-layout row wrap>
       <v-flex md6>
-        Employés
+        <div class="tableTitle">
+          Employés
+        </div>
       </v-flex>
       <v-flex md6>
         <v-text-field
@@ -42,5 +44,10 @@ export default {
   }
   .searchField label{
     top: auto;
+  }
+  @media screen and (max-width: 375px) {
+    .tableTitle{
+      padding-bottom: 20px;
+    }
   }
 </style>
