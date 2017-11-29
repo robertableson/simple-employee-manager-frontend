@@ -185,7 +185,7 @@ export default {
       snackbar: false,
       color: '',
       mode: '',
-      timeout: 1000000,
+      timeout: 10000,
       text: 'Suppression réussie.',
       pagination: {
         sortBy: 'name'
